@@ -1,0 +1,51 @@
+.Navigation {
+    z-index: 2;
+    position: sticky !important;
+    top: 0 !important;
+    position: -webkit-sticky !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: whitesmoke;
+}
+
+.Navigation>.app__logo>img {
+    height: 4rem;
+
+}
+
+.Navigation>.nav_items {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex: 6;
+}
+
+.Navigation>.nav_items>.nav_item {
+    text-decoration: none;
+    margin-left: 1.5rem;
+    font-size: 16px;
+    color: gray;
+    text-transform: capitalize;
+    cursor: pointer;
+    transition: all .4s ease;
+    font-weight: 400;
+}
+
+.Navigation>.nav_items>.nav_item>a {
+    text-decoration: none;
+    color: gray;
+}
+
+.Navigation>.nav_items>.nav_item:hover {
+    color: black !important;
+    transition: all .4s ease;
+    transform: scale(1.02);
+}
+
+.Navigation>.nav_left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

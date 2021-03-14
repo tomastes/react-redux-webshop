@@ -1,0 +1,122 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    padding: 4px;
+    margin: auto;
+
+}
+
+.sidebar>.search_container>form {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+    border-radius: 40px;
+    border: .4px solid gray;
+    color: gray;
+}
+
+.sidebar>.search_container>form>input {
+    padding: 4px;
+    outline: none;
+    border: none;
+    flex: 1;
+
+}
+
+.sidebar .Sidebar_productsList {
+    overflow: scroll !important;
+    height: 100vh;
+
+}
+
+.sidebar .Sidebar_productsList::-webkit-scrollbar {
+    width: 2px;
+}
+
+.sidebar .Sidebar_productsList>.single_product {
+    transition: all .1s ease-in-out;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    display: flex;
+    /* align-items: center; */
+    justify-content: space-between;
+    align-content: space-between;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    background-color: white;
+    color: gray;
+}
+
+.sidebar .Sidebar_productsList>.single_product:hover {
+    transform: scale(1.02);
+    transition: all .1s ease-in-out;
+
+}
+
+.sidebar .Sidebar_productsList>.single_product:hover>img {
+    opacity: 1;
+    transition: all .3s;
+}
+
+.sidebar .Sidebar_productsList>.single_product>img {
+    object-fit: fill;
+    width: 85px;
+    height: 90px;
+    opacity: .8;
+}
+
+.sidebar .Sidebar_productsList>.single_product>.product_detail {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+    margin-left: 0;
+    flex: 1;
+    max-width: 10rem;
+    align-self: flex-start;
+    height: 100%;
+    align-content: space-between;
+
+
+}
+
+.sidebar .Sidebar_productsList>.single_product>.product_detail>.product_detail_title {
+    color: gray;
+    font-weight: 600;
+}
+
+.sidebar .Sidebar_productsList>.single_product>.product_detail>.product_detail_author {
+    color: green;
+    font-style: italic;
+    color: rgb(143, 109, 109);
+}
+
+.sidebar .Sidebar_productsList>.single_product>.product_buttons {
+    font-size: 17px;
+}
+
+.sidebar .Sidebar_productsList>.single_product>.product_buttons>.delete_button {
+    color: rgba(255, 0, 0, 0.61);
+    font-style: italic;
+    border-bottom: .1px solid;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.sidebar .Sidebar_productsList>.single_product>.product_buttons>.delete_button:hover {
+    border-bottom: 1px solid red;
+    color: red;
+}
+
+.sidebar .Sidebar_productsList>.single_product>.product_buttons>.update_button {
+    color: rgba(0, 128, 0, 0.459);
+    font-style: italic;
+    border-bottom: .1px solid;
+    cursor: pointer;
+}
+
+.sidebar .Sidebar_productsList>.single_product>.product_buttons>.update_button:hover {
+    color: green;
+    border-bottom: 1px solid green;
+}

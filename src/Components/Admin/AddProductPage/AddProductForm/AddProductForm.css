@@ -1,0 +1,58 @@
+.form_container {
+    padding: 4px;
+    display: flex;
+    flex-direction: column;
+    background-color: whitesmoke;
+    /* height: 100vh; */
+    align-items: center;
+    margin: auto;
+
+}
+
+.form_container>form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form_container>form>h2 {
+    text-align: center;
+    font-weight: 700;
+    font-size: 20px;
+
+    text-transform: capitalize;
+    color: rgb(85, 85, 85);
+}
+
+.form_container>form>label {
+    color: gray;
+    font-size: 16px;
+    margin-top: 26px;
+}
+
+.form_container>form>input,
+.form_container>form>textarea {
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid gray;
+    background: rgb(255, 255, 255) !important;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.form_container>form>.btn_addProduct {
+    margin: .8rem 0;
+    background: rgba(37, 37, 155, 0.644);
+    color: white;
+    display: flex;
+
+}
+
+.form_container>form>.btn_addProduct:disabled {
+    background: rgba(34, 34, 36, 0.377);
+}
+
+.btn_loading {
+
+    margin-left: 3rem !important;
+}

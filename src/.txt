@@ -1,0 +1,11 @@
+==>todo 
+//!TODO: add admin & firebase api  uid to .env
+form validation for sign up (email,and password )
+password reset logics
+
+//!TODO: add password reset email adress component
+
+//:TODO: ADMIN PANNEL //!
+1. admin can crud products
+2. admin can see orders 
+3. 

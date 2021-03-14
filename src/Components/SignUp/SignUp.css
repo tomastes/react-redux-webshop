@@ -1,0 +1,64 @@
+.signup__container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.signup__container>.SignUpForm_container {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    width: 20rem;
+    background-color: white;
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+.signup__container>.SignUpForm_container>h2 {
+    text-align: center;
+    font-weight: 700;
+    font-size: 20px;
+    text-transform: capitalize;
+    color: rgb(85, 85, 85);
+}
+
+@media only screen and (max-width: 600px) {
+    .signup__container>.SignUpForm_container {
+        min-width: 80vw;
+    }
+}
+
+.signup__container>.SignUpForm_container>form {
+    display: flex;
+    flex-direction: column;
+}
+
+.signup__container>.SignUpForm_container>form>input,
+.signup__container>.SignUpForm_container>form>div>input {
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid gray;
+    background: rgba(235, 235, 235, 0.452) !important;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.signup__container>.SignUpForm_container>form>button {
+    background: rgba(37, 37, 155, 0.644);
+    color: white;
+    margin-top: 1rem;
+}
+
+.signup__container>.SignUpForm_container>form>label {
+    color: gray;
+    font-size: 16px;
+    margin-top: 16px;
+    margin-bottom: 5px;
+}
+
+.btn_backsignin {
+    background: rgba(128, 128, 128, 0.459) !important;
+}
