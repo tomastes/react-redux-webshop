@@ -2,9 +2,8 @@ const functions = require("firebase-functions");
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const stripe = require("stripe")(
-  "sk_test_51HQxhfBBaXrOCD0NgKYNizhuQMRXjczAxhBm95lNm5Qwug5JoTZVkPUAw7Eop1DXewnzob0OTl5bo0a4SUZ97Zmc00xtqt1CfM"
-);
+
+const stripe = require("stripe")(functions.config().stripe.key);
 //!app config
 const app = express();
 
@@ -15,7 +14,6 @@ app.use(bodyParser.json());
 app.get("/", (req, res) => {
   res.status(200).send("hello tomas");
 });
-
 //!payment intent
 app.post("/payments/create", async (req, res) => {
   const total = req.query.total;

@@ -42,8 +42,9 @@ const Shop = () => {
     if (checkIfInBasket) {
       return;
     }
-    const productToBasket = products?.filter((item) => item.id == id);
-    const { data } = productToBasket[0];
+    const productToBasket = products?.find((item) => item.id == id);
+    console.log(productToBasket, id);
+    const { data } = productToBasket;
 
     dispatch(
       addToBasket({

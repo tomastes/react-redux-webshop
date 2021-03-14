@@ -56,6 +56,7 @@ const CheckoutForm = ({ handleBack }) => {
         method: "post",
         url: `/payments/create?total=${basketTotal * 100}`,
       });
+      console.log(response);
       dispatch(setOrderNummer(response.data.orderNumber));
       setclientSecret(response.data.clientSecret);
     };
