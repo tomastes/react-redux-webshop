@@ -32,19 +32,7 @@ const Login = () => {
         alert(e);
       });
   };
-  const sendResetPasswordEmail = () => {
-    var auth = firebase.auth();
-    var emailAddress = "tomasberhe1999@gmail.com";
 
-    auth
-      .sendPasswordResetEmail(emailAddress)
-      .then(function () {
-        // Email sent.
-      })
-      .catch(function (error) {
-        // An error happened.
-      });
-  };
   return (
     <div className="login__container">
       <img src={img} alt="" />
@@ -66,7 +54,9 @@ const Login = () => {
             type="password"
             placeholder="password"
           />
-          <p onClick={sendResetPasswordEmail}>forgot password?</p>
+          <p onClick={(e) => history.replace("/resetPasword")}>
+            forgot password?
+          </p>
           <Button type="submit" className="signin_btn">
             Sign in
           </Button>

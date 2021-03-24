@@ -11,11 +11,14 @@ const AddProductForm = () => {
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(false);
+  const [amount, setAmount] = useState("");
+  const [weight, setWeight] = useState("");
   const handleAddProduct = (data) => {
     setLoading(true);
     //!upload image first
+    console.log(data.image[0].lastModified);
     const uploadTask = storage
-      .ref(`images/${data.image[0].name}`)
+      .ref(`images/${data.image[0].lastModified}${data.image[0].name}`)
       .put(data.image[0]);
     //! and get url
     uploadTask.on(
@@ -33,14 +36,15 @@ const AddProductForm = () => {
             db.collection("products")
               .add({
                 author: data.author,
+                amount: parseFloat(data.amount),
+                weight: parseFloat(data.weight),
                 title: data.title,
-                price: data.price,
+                price: parseFloat(data.price),
                 description: data.description,
                 image: url,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
               })
               .then((res) => {
-                console.log(res);
                 setDescription("");
                 setTitle("");
                 setPrice("");
@@ -82,10 +86,34 @@ const AddProductForm = () => {
         <input
           ref={register({ required: true })}
           name="price"
-          placeholder="title"
-          type="text"
+          placeholder="price"
+          type="number"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
+        />
+        {errors.price && <p>price is required</p>}
+        {/* in stock */}
+        <label htmlFor="amount">in stock</label>
+        <input
+          ref={register({ required: true })}
+          name="amount"
+          placeholder="in stock"
+          type="number"
+          min={0}
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+        />
+        {errors.amount && <p>in stock is required</p>}
+        {/* weight in  gram */}
+        <label htmlFor="weight">Weight in grams</label>
+        <input
+          ref={register({ required: true })}
+          name="weight"
+          placeholder="weight in grams"
+          type="number"
+          value={weight}
+          min={0}
+          onChange={(e) => setWeight(e.target.value)}
         />
         {errors.price && <p>price is required</p>}
         <label htmlFor="image">Image</label>

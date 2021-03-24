@@ -1,0 +1,41 @@
+.Footer {
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    align-items: center;
+    justify-content: space-evenly;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    padding-top: 5rem;
+    padding: .5rem;
+
+
+}
+
+.Sitemap {
+    display: flex;
+    flex-direction: column;
+}
+
+.information {
+    display: flex;
+    flex-direction: column;
+}
+
+.Account {
+    display: flex;
+    flex-direction: column;
+}
+
+.copyWright {
+    color: gray;
+    font-style: italic;
+}
+
+.copyWright span {
+    color: rgba(0, 0, 0, 0.801) !important;
+
+}

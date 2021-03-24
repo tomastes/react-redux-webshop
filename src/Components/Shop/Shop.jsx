@@ -43,7 +43,7 @@ const Shop = () => {
       return;
     }
     const productToBasket = products?.find((item) => item.id == id);
-    console.log(productToBasket, id);
+
     const { data } = productToBasket;
 
     dispatch(
@@ -54,6 +54,7 @@ const Shop = () => {
         image: data.image,
         author: data.author,
         amount: 1,
+        inStock: data.amount,
       })
     );
     localStorage.setItem("basket", JSON.stringify(basket));
@@ -87,47 +88,52 @@ const Shop = () => {
       </div>
       {/* mains shop */}
       <div className="shop_products_view">
-        {products?.map(({ id, data }) => (
-          <div key={id} className="shop_single_product">
-            <div className="shop_singleProduct_detail">
-              <img src={data.image} alt="product iamge" />
-              <div className="shop_singleProduct_Minidetail">
-                <p className="title">{data.title}</p>
-                <p className="author">A book By: {data.author}</p>
-                <p className="description">{data.description}</p>
-                <p className="price">${data.price}</p>
-                {basket?.find((item) => item.id == id) ? (
-                  <IconButton
-                    disabled={true}
-                    onClick={(e) => addToCartHandlar(id)}
-                  >
-                    <AddShoppingCartOutlined fontSize="large" />
-                  </IconButton>
-                ) : (
-                  <IconButton onClick={(e) => addToCartHandlar(id)}>
-                    <AddShoppingCartOutlined color="primary" fontSize="large" />
-                  </IconButton>
-                )}
+        {products
+          ?.filter(({ data }) => data.amount > 0)
+          .map(({ id, data }) => (
+            <div key={id} className="shop_single_product">
+              <div className="shop_singleProduct_detail">
+                <img src={data.image} alt="product iamge" />
+                <div className="shop_singleProduct_Minidetail">
+                  <p className="title">{data.title}</p>
+                  <p className="author">A book By: {data.author}</p>
+                  <p className="description">{data.description}</p>
+                  <p className="price">${data.price}.00</p>
+                  {basket?.find((item) => item.id == id) ? (
+                    <IconButton
+                      disabled={true}
+                      onClick={(e) => addToCartHandlar(id)}
+                    >
+                      <AddShoppingCartOutlined fontSize="large" />
+                    </IconButton>
+                  ) : (
+                    <IconButton onClick={(e) => addToCartHandlar(id)}>
+                      <AddShoppingCartOutlined
+                        color="primary"
+                        fontSize="large"
+                      />
+                    </IconButton>
+                  )}
 
-                {likes?.find((item) => item.id == id) ? (
-                  <IconButton
-                    disabled={true}
-                    onClick={(e) => addToLikedHandlar(id)}
-                  >
-                    <FavoriteOutlined
-                      fontSize="large"
-                      style={{ color: "rgba(194, 3, 3, 0.493)" }}
-                    />
-                  </IconButton>
-                ) : (
-                  <IconButton onClick={(e) => addToLikedHandlar(id)}>
-                    <FavoriteBorder fontSize="large" />
-                  </IconButton>
-                )}
+                  {likes?.find((item) => item.id == id) ? (
+                    <IconButton
+                      disabled={true}
+                      onClick={(e) => addToLikedHandlar(id)}
+                    >
+                      <FavoriteOutlined
+                        fontSize="large"
+                        style={{ color: "rgba(194, 3, 3, 0.493)" }}
+                      />
+                    </IconButton>
+                  ) : (
+                    <IconButton onClick={(e) => addToLikedHandlar(id)}>
+                      <FavoriteBorder fontSize="large" />
+                    </IconButton>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
     </div>
   );

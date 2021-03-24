@@ -4,7 +4,8 @@
     padding: 5px;
     margin: 10px;
     background-color: white;
-    height: 100vh;
+    /* height: 100vh; */
+    padding-bottom: 14rem;
 }
 
 .shop_container>.shop_header {

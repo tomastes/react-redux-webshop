@@ -1,0 +1,29 @@
+==>todo 
+//!TODO: add admin & firebase api  uid to .env done✅
+form validation for sign up (email,and password ) done✅
+password reset logics done✅
+
+//!TODO: add password reset email adress component done✅
+
+//:TODO: 
+1. admin can crud products done but not update✅
+2. admin can see  all orders done✅
+3. authenticate to checkout done✅
+==>
+new //!TODO:    
+     2. when in stock < 1 delete product   ✅    
+
+            //!TODO: info for the customer and new features added
+                1. to use paypal service you have to pay 
+                2. product weight (to cualcualte shipping costs) and in stock features--> if no more in stock product won't list in   the shop.
+                3. we will remove news page
+
+
+
+
+
+nextTODO:⏭⏭⏭⏭⏭⏭⏭⏭⏭⏭⏭
+    1.weight based shipping cualculation  
+    2.ADMIN can see single order detail thinking about popup with detail
+    3.sending order confirmation maybee 🤔🤔🤔(cus mailing flows kinda sucks with react)
+           

@@ -3,13 +3,16 @@ import { createSlice } from "@reduxjs/toolkit";
 export const basketSlice = createSlice({
   name: "basket",
   initialState: {
-    basket: [],
+    basket: null,
     basketTotal: null,
     orderNummer: null,
+    spinner: false,
   },
   reducers: {
     addToBasket: (state, action) => {
-      state.basket.push(action.payload);
+      const tempBasket = state.basket ? state.basket : [];
+      tempBasket.push(action.payload);
+      state.basket = tempBasket;
     },
     setOrderNummer: (state, action) => {
       state.orderNummer = action.payload;
@@ -40,10 +43,14 @@ export const basketSlice = createSlice({
       const total = subTotal + 12;
       state.basketTotal = parseFloat(total);
     },
+    setSpinner: (state, action) => {
+      state.spinner = action.payload;
+    },
   },
 });
 
 export const {
+  setSpinner,
   clearBasket,
   setOrderNummer,
   qualqBasketTotal,
@@ -56,5 +63,6 @@ export const {
 export const selectBasket = (state) => state.basket.basket;
 export const selectBasketTotal = (state) => state.basket.basketTotal;
 export const selectOrderNummer = (state) => state.basket.orderNummer;
+export const selectSpinner = (state) => state.basket.spinner;
 
 export default basketSlice.reducer;
