@@ -5,15 +5,18 @@ import {
   changeAmount,
   removeFromBasket,
   qualqBasketTotal,
+  selectSpinner,
 } from "../../features/basketSlice";
 import "./BasketPage.css";
 import { useHistory } from "react-router";
+import Paypal from "../paypal/Paypal";
 const BasketPage = () => {
   const history = useHistory();
 
   const dispatch = useDispatch();
   const [subTotal, setSubTotal] = useState(null);
   const basket = useSelector(selectBasket);
+  const spinner = useSelector(selectSpinner);
   const removeFromBasketHandelar = (id) => {
     dispatch(removeFromBasket(id));
   };
@@ -25,8 +28,10 @@ const BasketPage = () => {
   };
   const totalQual = () => {};
   useEffect(() => {
-    setSubTotal(subTotalQual().toFixed(2));
-    dispatch(qualqBasketTotal());
+    if (basket) {
+      setSubTotal(subTotalQual().toFixed(2));
+      dispatch(qualqBasketTotal());
+    }
   }, [basket]);
   useEffect(() => {
     localStorage.setItem("basket", JSON.stringify(basket));
@@ -35,66 +40,70 @@ const BasketPage = () => {
     history.replace("/checkout");
   };
   return (
-    <div className="basketpage">
-      {/* basket container */}
-      <div className="basket_list_container">
-        <div className="basket_header">
-          {basket ? (
-            <h2> you shopping basket</h2>
-          ) : (
-            <h2>you basket is empty</h2>
-          )}
-        </div>
-        {/* basket list */}
-        <div className="basket_list">
-          {basket?.map((item) => (
-            <div key={item.id} className="single_basket_list">
-              <img width="50px" src={item.image} alt="" />
-              <h4 onClick={(e) => removeFromBasketHandelar(item.id)}>
-                {item.title} <span>remove</span>
-              </h4>
+    <>
+      {spinner ? (
+        <h2>loading...</h2>
+      ) : (
+        <div className="basketpage">
+          {/* basket container */}
+          <div className="basket_list_container">
+            <div className="basket_header">
+              {basket ? (
+                <h2> you shopping basket</h2>
+              ) : (
+                <h2>you basket is empty</h2>
+              )}
+            </div>
+            {/* basket list */}
+            <div className="basket_list">
+              {basket?.map((item) => (
+                <div key={item.id} className="single_basket_list">
+                  <img width="50px" src={item.image} alt="" />
+                  <h4 onClick={(e) => removeFromBasketHandelar(item.id)}>
+                    {item.title} <span>remove</span>
+                  </h4>
 
-              <input
-                type="number"
-                name=""
-                min="1"
-                defaultValue={item.amount}
-                id=""
-                onChange={(e) =>
-                  dispatch(
-                    changeAmount({
-                      id: item.id,
-                      amount: parseInt(e.target.value),
-                    })
-                  )
-                }
-              />
-              <h4>{item.price}</h4>
-            </div>
-          ))}
-        </div>
-      </div>
-      {/* basket total */}
-      {basket?.length ? (
-        <div className="basket_price_container">
-          <div className="basket_price">
-            <div className="basket_subtotal">
-              <p className="subtotal_label">subtotal ({basket?.length})</p>
-              <p className="subtotal_value">€{subTotal}</p>
-            </div>
-            <div className="basket_shipping">
-              <p className="shipping_label">shipping cost</p>
-              <p className="shipping_value">€12</p>
-            </div>
-            <div className="basket_total">
-              <p className="grand_total_label">Grand total estimated</p>
-              <p className="Grand_total">
-                €{(parseFloat(subTotal) + 12).toFixed(2)}
-              </p>
+                  <input
+                    type="number"
+                    name=""
+                    min="1"
+                    defaultValue={item.amount}
+                    id=""
+                    onChange={(e) =>
+                      dispatch(
+                        changeAmount({
+                          id: item.id,
+                          amount: parseInt(e.target.value),
+                        })
+                      )
+                    }
+                  />
+                  <h4>{item.price}</h4>
+                </div>
+              ))}
             </div>
           </div>
-
-          <div
+          {/* basket total */}
+          {basket?.length ? (
+            <div className="basket_price_container">
+              <div className="basket_price">
+                <div className="basket_subtotal">
+                  <p className="subtotal_label">subtotal ({basket?.length})</p>
+                  <p className="subtotal_value">€{subTotal}</p>
+                </div>
+                <div className="basket_shipping">
+                  <p className="shipping_label">shipping cost</p>
+                  <p className="shipping_value">€12</p>
+                </div>
+                <div className="basket_total">
+                  <p className="grand_total_label">Grand total estimated</p>
+                  <p className="Grand_total">
+                    €{(parseFloat(subTotal) + 0.05).toFixed(2)}
+                  </p>
+                </div>
+              </div>
+              {/* checkout with ideal stripe */}
+              {/* <div
             onClick={checkoutWithIdealHandle}
             className="checkoutwithIdealContainer"
           >
@@ -108,10 +117,15 @@ const BasketPage = () => {
               {" "}
               checkout with ideal
             </button>
-          </div>
+          </div> */}
+              <div className="paypal_buttons">
+                <Paypal />
+              </div>
+            </div>
+          ) : null}
         </div>
-      ) : null}
-    </div>
+      )}
+    </>
   );
 };
 

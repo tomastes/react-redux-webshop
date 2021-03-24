@@ -13,6 +13,7 @@ import { logout, selectUser } from "../../features/userSlice";
 import { auth } from "../../firebase";
 import img from "../../logo.jpg";
 import "./Navigation.css";
+import NavItems from "./NavItems";
 const Navigation = () => {
   const history = useHistory();
   const user = useSelector(selectUser);
@@ -35,84 +36,7 @@ const Navigation = () => {
         <img src={img} alt="" />
       </div>
       {/* links */}
-      <div className="nav_items">
-        <h6 className="nav_item">
-          {" "}
-          <NavLink
-            to="/"
-            exact
-            activeStyle={{
-              color: "black",
-            }}
-          >
-            Home
-          </NavLink>
-        </h6>
-        <h6 className="nav_item">
-          <NavLink
-            to="/shop"
-            activeStyle={{
-              color: "black",
-            }}
-          >
-            Shop
-          </NavLink>
-        </h6>
-        {user?.admin && (
-          <>
-            <h6 className="nav_item">
-              <NavLink
-                to="/admin-addproducts"
-                activeStyle={{
-                  color: "black",
-                }}
-              >
-                add products
-              </NavLink>
-            </h6>
-          </>
-        )}
-        {user?.admin && (
-          <>
-            <h6 className="nav_item">
-              <NavLink
-                to="orders"
-                activeStyle={{
-                  color: "black",
-                }}
-              >
-                orders{" "}
-              </NavLink>
-            </h6>
-          </>
-        )}
-        {!user?.admin && (
-          <>
-            <h6 className="nav_item">
-              <NavLink
-                to="/News"
-                activeStyle={{
-                  color: "black",
-                }}
-              >
-                News
-              </NavLink>
-            </h6>
-
-            <h6 className="nav_item">
-              {" "}
-              <NavLink
-                to="/about"
-                activeStyle={{
-                  color: "black",
-                }}
-              >
-                about
-              </NavLink>
-            </h6>
-          </>
-        )}
-      </div>
+      <NavItems />
       {/* icons and badges */}
       <div className="nav_left">
         {!user?.admin && (

@@ -5,6 +5,7 @@
     flex-direction: row;
     justify-content: space-between;
     height: auto;
+    padding-bottom: 14rem;
 }
 
 @media only screen and (max-width: 600px) {
@@ -129,4 +130,9 @@
     outline: none;
     background: white;
     font-weight: 600;
+}
+
+.paypal_buttons {
+    max-width: 15rem;
+    margin-top: .5rem;
 }

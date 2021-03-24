@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 import "./App.css";
-import CheckoutStepper from "./Components/CheckoutStepper/CheckoutStepper";
-import Navigation from "./Components/Navigation/Navigation";
 import {
   BrowserRouter,
   Route,
@@ -21,7 +19,10 @@ import {
   selectBasket,
   setBasketFromLocalStorage,
 } from "./features/basketSlice";
-import PaymentStatus from "./Components/CheckoutStepper/PaymentStatus";
+import Orders from "./Components/Orders/Orders";
+import NavContainer from "./Components/Containers/Navigation/NavContainer";
+import PaswordReset from "./Components/Login/PaswordReset";
+import Footer from "./Components/Footer/Footer";
 function App() {
   //  const history = useHistory();
   const user = useSelector(selectUser);
@@ -62,81 +63,86 @@ function App() {
   }, []);
   return (
     <BrowserRouter>
-      <div className="App">
-        <Switch>
-          {/* home */}
-          <Route exact path="/">
-            <Navigation />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/signup">
-            <SignUp />
-          </Route>
-          {/* shop */}
-          <Route path="/shop">
+      <Switch>
+        {/* home */}
+        <Route exact path="/">
+          <NavContainer />
+          <Footer />
+        </Route>
+        <Route path="/login">
+          <Login />
+          <Footer />
+        </Route>
+        <Route path="/signup">
+          <SignUp />
+          <Footer />
+        </Route>
+        <Route path="/resetPasword">
+          <PaswordReset />
+        </Route>
+        {/* shop */}
+        <Route path="/shop">
+          <>
+            <NavContainer />
+            <Shop />
+            <Footer />
+          </>
+        </Route>
+        <Route path="/news">
+          <>
+            <NavContainer />
+          </>
+        </Route>
+        <Route path="/basket">
+          <>
+            <NavContainer />
+            <BasketPage />
+            <Footer />
+          </>
+        </Route>
+        <Route path="/about">
+          <NavContainer />
+          <Footer />
+        </Route>
+        {/* checkout stepper if user */}
+
+        {/* to payment status */}
+        <Route path="/orders">
+          {user ? (
             <>
-              <Navigation />
-              <Shop />
+              <NavContainer />
+              <Orders /> <Footer />
             </>
-          </Route>
-          <Route path="/basket">
+          ) : (
             <>
-              <Navigation />
-              <BasketPage />
+              <Login /> <Footer />
             </>
-          </Route>
-          <Route path="/about">
-            <Navigation />
-          </Route>
-          {/* checkout stepper if user */}
-          <Route path="/checkout">
-            {user ? (
-              <>
-                <Navigation />
-                <CheckoutStepper />
-                {/* <h2>passed</h2> */}
-              </>
-            ) : (
-              <Login />
-            )}
-          </Route>
-          {/* to payment status */}
-          <Route path="/paymentStatus">
-            {user ? (
-              <>
-                <Navigation />
+          )}
+        </Route>
 
-                <PaymentStatus />
-              </>
-            ) : (
-              <Login />
-            )}
-          </Route>
+        {/* admin routes */}
 
-          {/* admin routes */}
-
-          <Route path="/admin-addProducts">
+        <Route path="/admin-addProducts">
+          {user?.admin ? (
+            <>
+              <NavContainer /> <AddProductPage /> <Footer />
+            </>
+          ) : (
+            <>
+              <Login /> <Footer />
+            </>
+          )}
+        </Route>
+        {/* <Route path="/admin-Orders">
             {user?.admin ? (
               <>
-                <Navigation /> <AddProductPage />
-              </>
-            ) : (
-              <Login />
-            )}
-          </Route>
-          {/* <Route path="/admin-Orders">
-            {user?.admin ? (
-              <>
-                <Navigation /> <Orders />
+                <NavContainer /> <Orders />
               </>
             ) : (
               <Login />
             )}
           </Route> */}
-        </Switch>
-      </div>
+      </Switch>
     </BrowserRouter>
   );
 }

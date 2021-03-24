@@ -45,6 +45,7 @@ const Sidebar = () => {
             <div className="product_detail">
               <p className="product_detail_title">{data.title}</p>
               <p className="product_detail_author">{data.author}</p>
+              <p className="product_detail_author">in stock: {data.amount}</p>
             </div>
             <div className="product_buttons">
               <p onClick={(e) => deleteHandlar(id)} className="delete_button">
